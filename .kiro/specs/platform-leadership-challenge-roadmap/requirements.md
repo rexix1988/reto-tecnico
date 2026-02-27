@@ -178,3 +178,113 @@ Este documento especifica los requisitos funcionales y no funcionales para el si
 4. WHEN el sistema detecta que un archivo no ha cambiado, THE Sistema SHALL usar la versión cacheada
 5. WHEN el usuario cierra la sesión, THE Sistema SHALL limpiar datos temporales pero mantener preferencias
 
+
+
+### Requisito 13: Dashboard Moderno e Interactivo
+
+**User Story**: Como stakeholder ejecutivo, quiero un dashboard visualmente atractivo con gráficos y métricas interactivas, para que pueda entender el estado del proyecto de manera intuitiva.
+
+#### Criterios de Aceptación
+
+1. WHEN el dashboard se carga, THE Sistema SHALL mostrar KPIs principales en el header (total fases, % completado, dependencias activas)
+2. WHEN el dashboard se renderiza, THE Sistema SHALL incluir gráfico donut de progreso por estado
+3. WHEN el dashboard se renderiza, THE Sistema SHALL incluir timeline Gantt interactivo con fases
+4. WHEN el dashboard se renderiza, THE Sistema SHALL incluir matriz de capacidades por estado
+5. WHEN el usuario interactúa con gráficos, THE Sistema SHALL mostrar tooltips con información detallada
+6. WHEN el usuario hace hover sobre elementos, THE Sistema SHALL aplicar efectos de elevación y transiciones suaves
+7. WHEN el dashboard se carga, THE Sistema SHALL animar la aparición de elementos con stagger effect
+
+### Requisito 14: Timeline Interactivo
+
+**User Story**: Como usuario del sistema, quiero un timeline horizontal interactivo con las fases, para que pueda navegar visualmente por el roadmap.
+
+#### Criterios de Aceptación
+
+1. WHEN el timeline se renderiza, THE Sistema SHALL mostrar nodos de fase con diseño redondeado
+2. WHEN el timeline se renderiza, THE Sistema SHALL conectar fases con líneas visuales
+3. WHEN el timeline se renderiza, THE Sistema SHALL mostrar indicadores de progreso en cada nodo
+4. WHEN el usuario hace hover sobre un nodo, THE Sistema SHALL aplicar efecto de elevación con sombra
+5. WHEN el usuario hace clic en un nodo, THE Sistema SHALL expandir los detalles de la fase inline
+6. WHEN el timeline es más ancho que la pantalla, THE Sistema SHALL permitir scroll horizontal suave
+7. WHEN una fase está activa, THE Sistema SHALL resaltarla con animación
+
+### Requisito 15: Tarjetas de Fase Expandibles
+
+**User Story**: Como usuario del sistema, quiero ver detalles de fase sin navegación adicional, para que pueda acceder a la información rápidamente.
+
+#### Criterios de Aceptación
+
+1. WHEN una tarjeta de fase se renderiza, THE Sistema SHALL aplicar bordes redondeados (16px+)
+2. WHEN una tarjeta de fase se renderiza, THE Sistema SHALL aplicar gradiente de fondo basado en estado
+3. WHEN el usuario hace clic en una tarjeta, THE Sistema SHALL expandir los detalles inline con animación accordion
+4. WHEN una tarjeta está expandida, THE Sistema SHALL mostrar capacidades, dependencias y criterios
+5. WHEN el usuario hace clic fuera o en botón de colapsar, THE Sistema SHALL colapsar la tarjeta con animación suave
+6. WHEN una tarjeta se expande, THE Sistema SHALL animar la aparición de items con stagger effect
+7. WHEN una tarjeta muestra capacidades, THE Sistema SHALL incluir badges de estado y prioridad
+
+### Requisito 16: Sistema de Diseño Consistente
+
+**User Story**: Como usuario del sistema, quiero una experiencia visual consistente y moderna, para que la aplicación sea agradable de usar.
+
+#### Criterios de Aceptación
+
+1. WHEN el sistema renderiza componentes, THE Sistema SHALL usar paleta de colores definida (status, priority, UI)
+2. WHEN el sistema renderiza texto, THE Sistema SHALL aplicar tipografía consistente (headings, body, metrics)
+3. WHEN el sistema renderiza tarjetas, THE Sistema SHALL aplicar sombras y elevación consistentes
+4. WHEN el sistema aplica animaciones, THE Sistema SHALL usar timing consistente (150ms micro, 250ms transitions, 400ms page)
+5. WHEN el sistema renderiza en diferentes dispositivos, THE Sistema SHALL adaptar layout según breakpoints
+6. WHEN el sistema muestra estados, THE Sistema SHALL usar colores + iconos para accesibilidad
+
+### Requisito 17: Filtros y Búsqueda en Tiempo Real
+
+**User Story**: Como usuario del sistema, quiero filtrar y buscar información rápidamente, para que pueda encontrar lo que necesito sin demora.
+
+#### Criterios de Aceptación
+
+1. WHEN el usuario aplica un filtro, THE Sistema SHALL actualizar la vista instantáneamente
+2. WHEN el usuario escribe en búsqueda, THE Sistema SHALL aplicar debounce de 300ms
+3. WHEN se aplican filtros, THE Sistema SHALL animar la salida de items no coincidentes
+4. WHEN no hay resultados, THE Sistema SHALL mostrar estado vacío con mensaje descriptivo
+5. WHEN el usuario limpia filtros, THE Sistema SHALL restaurar todos los items con animación
+6. WHEN hay filtros activos, THE Sistema SHALL mostrar badge con contador de filtros
+
+### Requisito 18: Animaciones y Transiciones Fluidas
+
+**User Story**: Como usuario del sistema, quiero animaciones suaves y naturales, para que la aplicación se sienta moderna y responsiva.
+
+#### Criterios de Aceptación
+
+1. WHEN un componente aparece, THE Sistema SHALL aplicar fade-in animation
+2. WHEN una lista se renderiza, THE Sistema SHALL aplicar stagger effect a los items
+3. WHEN el usuario hace hover, THE Sistema SHALL aplicar transición de 150ms
+4. WHEN un panel se expande/colapsa, THE Sistema SHALL aplicar animación de 250ms
+5. WHEN se cambia de vista, THE Sistema SHALL aplicar transición de 400ms
+6. WHEN se animan números/métricas, THE Sistema SHALL aplicar counter animation
+7. WHEN todas las animaciones se ejecutan, THE Sistema SHALL mantener 60fps
+
+### Requisito 19: Layout Responsivo con Sidebar
+
+**User Story**: Como usuario del sistema, quiero que la aplicación funcione bien en cualquier dispositivo, para que pueda acceder desde desktop, tablet o móvil.
+
+#### Criterios de Aceptación
+
+1. WHEN el viewport es desktop (>1024px), THE Sistema SHALL mostrar sidebar fijo a la izquierda
+2. WHEN el viewport es tablet (640-1024px), THE Sistema SHALL mostrar sidebar como overlay
+3. WHEN el viewport es móvil (<640px), THE Sistema SHALL mostrar sidebar colapsado con hamburger menu
+4. WHEN el layout cambia, THE Sistema SHALL reorganizar gráficos y tarjetas según breakpoint
+5. WHEN el usuario está en móvil, THE Sistema SHALL hacer interacciones touch-friendly
+6. WHEN el sidebar está colapsado, THE Sistema SHALL mostrar solo iconos con tooltips
+
+### Requisito 20: Componentes de Visualización de Datos
+
+**User Story**: Como usuario del sistema, quiero gráficos interactivos y visualizaciones de datos, para que pueda entender métricas y tendencias fácilmente.
+
+#### Criterios de Aceptación
+
+1. WHEN se renderiza gráfico de progreso, THE Sistema SHALL usar donut chart con porcentajes
+2. WHEN se renderiza timeline Gantt, THE Sistema SHALL mostrar barras horizontales por fase
+3. WHEN se renderiza matriz de capacidades, THE Sistema SHALL usar stacked bar chart
+4. WHEN el usuario hace hover sobre gráfico, THE Sistema SHALL mostrar tooltip con detalles
+5. WHEN los gráficos se cargan, THE Sistema SHALL aplicar animación de entrada
+6. WHEN los datos cambian, THE Sistema SHALL animar la transición de valores
+7. WHEN un segmento de gráfico es clickeable, THE Sistema SHALL indicarlo visualmente

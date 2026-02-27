@@ -384,3 +384,214 @@ Sistema web interactivo para visualizar y gestionar el roadmap del reto técnico
 - Los checkpoints permiten validación incremental y ajustes tempranos
 - La implementación se enfoca en funcionalidad core primero, optimizaciones después
 - No se incluyen tareas de testing según instrucciones del usuario
+
+
+## Fase 11: Modernización de UI/UX (NUEVO)
+
+- [ ] 11.1 Instalar dependencias de diseño moderno
+  - Instalar recharts, framer-motion, react-icons, date-fns, clsx, react-hot-toast, use-debounce
+  - Verificar compatibilidad de versiones
+  - _Requisitos: 13.1, 18.1_
+
+- [ ] 11.2 Crear sistema de diseño base
+  - [ ] 11.2.1 Crear archivo src/styles/theme.ts con paleta de colores
+    - Definir colores de status, priority y UI
+    - _Requisitos: 16.1_
+  
+  - [ ] 11.2.2 Crear componente Card base con estilos redondeados
+    - Bordes redondeados, sombras, padding consistente
+    - _Requisitos: 15.1, 16.3_
+  
+  - [ ] 11.2.3 Crear componente Badge para status y priority
+    - Usar colores + iconos para accesibilidad
+    - _Requisitos: 15.7, 16.6_
+  
+  - [ ] 11.2.4 Crear componente ProgressBar animado
+    - Animación de llenado suave
+    - _Requisitos: 13.2_
+
+- [ ] 11.3 Implementar layout con sidebar
+  - [ ] 11.3.1 Crear componente MainLayout
+    - Estructura con sidebar, header y main content
+    - _Requisitos: 19.1_
+  
+  - [ ] 11.3.2 Crear componente Sidebar con navegación
+    - Lista de fases, filtros, estado collapsed/expanded
+    - Responsive según breakpoints
+    - _Requisitos: 19.1, 19.2, 19.3, 19.6_
+  
+  - [ ] 11.3.3 Crear componente Header con KPIs
+    - Mostrar total fases, % completado, dependencias activas
+    - Acciones rápidas (refresh, export)
+    - _Requisitos: 13.1_
+
+- [ ] 11.4 Implementar gráficos interactivos
+  - [ ] 11.4.1 Crear componente ProgressChart (donut)
+    - Usar Recharts para donut chart
+    - Mostrar progreso por estado con tooltips
+    - Animación de entrada
+    - _Requisitos: 13.2, 20.1, 20.4, 20.5_
+  
+  - [ ] 11.4.2 Crear componente TimelineChart (Gantt)
+    - Barras horizontales por fase con duración
+    - Indicador de fecha actual
+    - Clickeable para expandir
+    - _Requisitos: 13.3, 20.2, 20.7_
+  
+  - [ ] 11.4.3 Crear componente CapabilityMatrix
+    - Stacked bar chart agrupado por fase
+    - Coloreado por estado
+    - Tooltips con detalles
+    - _Requisitos: 13.4, 20.3, 20.4_
+
+- [ ] 11.5 Implementar timeline interactivo
+  - [ ] 11.5.1 Crear componente PhaseTimeline
+    - Nodos redondeados conectados con líneas
+    - Scroll horizontal suave
+    - _Requisitos: 14.1, 14.2, 14.6_
+  
+  - [ ] 11.5.2 Crear componente TimelineNode
+    - Diseño circular/redondeado con gradiente
+    - Indicador de progreso (ring)
+    - Efectos hover con elevación
+    - _Requisitos: 14.3, 14.4, 14.7_
+  
+  - [ ] 11.5.3 Agregar expansión inline en timeline
+    - Click en nodo expande detalles sin navegación
+    - _Requisitos: 14.5_
+
+- [ ] 11.6 Mejorar tarjetas de fase con expansión
+  - [ ] 11.6.1 Actualizar PhaseCard con diseño moderno
+    - Bordes redondeados 16px+
+    - Gradiente de fondo basado en estado
+    - Hover effect con elevación
+    - _Requisitos: 15.1, 15.2, 13.6_
+  
+  - [ ] 11.6.2 Implementar expansión accordion con Framer Motion
+    - Animación suave de expand/collapse (250ms)
+    - Click para expandir inline
+    - _Requisitos: 15.3, 15.5, 18.4_
+  
+  - [ ] 11.6.3 Crear componente PhaseDetails inline
+    - Mostrar capacidades, dependencias, criterios
+    - Stagger animation para items
+    - _Requisitos: 15.4, 15.6, 18.2_
+  
+  - [ ] 11.6.4 Crear componente CapabilityItem colapsable
+    - Badges de estado y prioridad
+    - Descripción y deliverables
+    - _Requisitos: 15.7_
+
+- [ ] 11.7 Implementar filtros y búsqueda
+  - [ ] 11.7.1 Crear componente FilterPanel
+    - Multi-select para status, priority, phase
+    - Badge con contador de filtros activos
+    - Botón clear all
+    - _Requisitos: 17.6_
+  
+  - [ ] 11.7.2 Implementar búsqueda con debounce
+    - Input con debounce de 300ms
+    - Búsqueda en tiempo real
+    - _Requisitos: 17.2_
+  
+  - [ ] 11.7.3 Agregar animaciones de filtrado
+    - Fade out de items no coincidentes
+    - Estado vacío cuando no hay resultados
+    - Restauración animada al limpiar
+    - _Requisitos: 17.1, 17.3, 17.4, 17.5_
+
+- [ ] 11.8 Implementar animaciones con Framer Motion
+  - [ ] 11.8.1 Crear archivo src/animations/variants.ts
+    - Definir variantes: fadeIn, slideIn, stagger, scale
+    - _Requisitos: 18.1, 18.2_
+  
+  - [ ] 11.8.2 Aplicar animaciones a componentes
+    - Fade-in en carga de componentes
+    - Stagger effect en listas
+    - Hover transitions (150ms)
+    - Counter animations para métricas
+    - _Requisitos: 18.1, 18.2, 18.3, 18.6_
+  
+  - [ ] 11.8.3 Optimizar rendimiento de animaciones
+    - Usar CSS transforms
+    - Mantener 60fps
+    - _Requisitos: 18.7_
+
+- [ ] 11.9 Implementar diseño responsivo
+  - [ ] 11.9.1 Adaptar layout para mobile (<640px)
+    - Single column
+    - Sidebar colapsado con hamburger
+    - Interacciones touch-friendly
+    - _Requisitos: 19.3, 19.5_
+  
+  - [ ] 11.9.2 Adaptar layout para tablet (640-1024px)
+    - 2 columns
+    - Sidebar overlay
+    - _Requisitos: 19.2, 19.4_
+  
+  - [ ] 11.9.3 Adaptar layout para desktop (>1024px)
+    - 3-4 columns
+    - Sidebar fijo
+    - _Requisitos: 19.1, 19.4_
+  
+  - [ ] 11.9.4 Reorganizar gráficos según breakpoint
+    - Stacked en mobile, grid en desktop
+    - _Requisitos: 19.4_
+
+- [ ] 11.10 Agregar tooltips y notificaciones
+  - [ ] 11.10.1 Crear componente Tooltip con Framer Motion
+    - Hover tooltips con delay
+    - Posicionamiento inteligente
+    - _Requisitos: 13.5_
+  
+  - [ ] 11.10.2 Integrar react-hot-toast
+    - Notificaciones de éxito/error
+    - Auto-dismiss
+    - Estilos custom
+    - _Requisitos: 8.1, 8.2_
+
+- [ ] 11.11 Actualizar DashboardView con nuevo diseño
+  - Integrar MainLayout, Header, Sidebar
+  - Reemplazar componentes con versiones modernas
+  - Agregar gráficos interactivos
+  - Aplicar animaciones de carga
+  - _Requisitos: 13.1-13.7_
+
+- [ ] 11.12 Checkpoint - Validar diseño moderno
+  - Verificar que todos los gráficos se renderizan correctamente
+  - Verificar animaciones fluidas a 60fps
+  - Verificar responsividad en mobile, tablet, desktop
+  - Verificar accesibilidad (colores + iconos)
+  - Preguntar al usuario si hay ajustes necesarios
+
+## Fase 12: Ajustes y Refinamientos (COMPLETADO)
+
+- [x] 12.1 Eliminar estados de fases y capacidades
+  - Removidas líneas `**Estado**:` del roadmap.md
+  - Parser mantiene estado por defecto sin mostrarlo en UI
+
+- [x] 12.2 Implementar Timeline temporal real
+  - Creado TimelineChart con fechas calculadas desde hoy
+  - Muestra duración en meses por fase con barras horizontales
+  - Tooltips con fechas exactas de inicio/fin
+  - Reemplazó gráfico de matriz de capacidades
+
+- [x] 12.3 Modal de detalles de capacidad
+  - Creado CapabilityModal con descripción, entregables, dependencias
+  - Animación de entrada/salida con Framer Motion
+  - Click en capacidad abre modal con información completa
+
+- [x] 12.4 Navegación del sidebar mejorada
+  - Click en fase del sidebar hace scroll suave y expande tarjeta
+  - Implementado con useRef y scrollIntoView
+  - Estado expandido controlado desde DashboardView
+
+- [x] 12.5 Corrección de duplicación de fases
+  - Parser valida headings antes de procesarlos como fases
+  - Eliminación de duplicados por ID usando Map
+  - Solo procesa headings con patrón "Fase N: Nombre"
+
+- [x] 12.6 Expansión de tarjetas desde click directo
+  - PhaseCard alterna expansión al hacer click en la tarjeta
+  - Funciona tanto desde sidebar como desde click directo
+  - Toggle con setActivePhase para control centralizado

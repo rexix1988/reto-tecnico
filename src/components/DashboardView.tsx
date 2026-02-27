@@ -1,105 +1,124 @@
+import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import { useStore } from '../state/store';
-import { TimelineView } from '../components/TimelineView';
-import { MetricCard } from '../components/MetricCard';
+import { MainLayout } from './layout/MainLayout';
+import { PhaseCard } from './PhaseCard';
+import { ProgressChart } from './dashboard/ProgressChart';
+import { TimelineChart } from './dashboard/TimelineChart';
+import { MetricCard } from './MetricCard';
 
 export function DashboardView() {
-  const { parsedSpec, setActivePhase } = useStore();
+  const { parsedSpec, activePhase } = useStore();
+  const phaseRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    if (activePhase && phaseRefs.current[activePhase]) {
+      phaseRefs.current[activePhase]?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+  }, [activePhase]);
+
+  const handlePhaseSelect = (phaseId: string) => {
+    if (phaseRefs.current[phaseId]) {
+      phaseRefs.current[phaseId]?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+  };
 
   if (!parsedSpec) {
-    return <div className="p-8 text-center">No data loaded</div>;
+    return (
+      <MainLayout>
+        <div className="text-center text-slate-500">No data loaded</div>
+      </MainLayout>
+    );
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
-      {/* Executive Summary */}
-      <section>
-        <h2 className="text-2xl font-bold mb-4">Executive Summary</h2>
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-xl font-semibold">{parsedSpec.metadata.title}</h3>
-          <p className="text-gray-600 mt-2">{parsedSpec.metadata.description}</p>
-          <div className="mt-4 flex gap-4 text-sm text-gray-500">
-            <span>Version: {parsedSpec.metadata.version}</span>
-            <span>Last Updated: {new Date(parsedSpec.metadata.lastUpdated).toLocaleDateString()}</span>
-          </div>
-        </div>
-      </section>
+    <MainLayout onPhaseSelect={handlePhaseSelect}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-8"
+      >
+        {/* Charts Section */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ProgressChart phases={parsedSpec.phases} />
+          <TimelineChart phases={parsedSpec.phases} />
+        </section>
 
-      {/* Phase Overview */}
-      <section>
-        <h2 className="text-2xl font-bold mb-4">Phases</h2>
-        <TimelineView 
-          phases={parsedSpec.phases} 
-          onPhaseClick={setActivePhase}
-        />
-      </section>
-
-      {/* Success Metrics */}
-      {parsedSpec.successMetrics.length > 0 && (
+        {/* Phases Section */}
         <section>
-          <h2 className="text-2xl font-bold mb-4">Success Metrics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {parsedSpec.successMetrics.map(metric => (
-              <MetricCard key={metric.id} metric={metric} />
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Fases del Proyecto</h2>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: { transition: { staggerChildren: 0.1 } },
+            }}
+          >
+            {parsedSpec.phases.map((phase) => (
+              <motion.div
+                key={phase.id}
+                ref={(el) => (phaseRefs.current[phase.id] = el)}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <PhaseCard 
+                  phase={phase} 
+                  expanded={activePhase === phase.id}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </section>
-      )}
 
-      {/* Decision Framework */}
-      {parsedSpec.decisionFramework && (
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Decision Framework</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-green-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-lg mb-3">Flexible Areas</h3>
-              {parsedSpec.decisionFramework.flexible.map((area, i) => (
-                <div key={i} className="mb-3">
-                  <h4 className="font-medium">{area.title}</h4>
-                  <p className="text-sm text-gray-600">{area.description}</p>
-                </div>
+        {/* Success Metrics */}
+        {parsedSpec.successMetrics.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Métricas de Éxito</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {parsedSpec.successMetrics.map((metric) => (
+                <MetricCard key={metric.id} metric={metric} />
               ))}
             </div>
-            <div className="bg-red-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-lg mb-3">Non-Negotiable</h3>
-              {parsedSpec.decisionFramework.nonNegotiable.map((area, i) => (
-                <div key={i} className="mb-3">
-                  <h4 className="font-medium">{area.title}</h4>
-                  <p className="text-sm text-gray-600">{area.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
 
-      {/* Key Actions */}
-      {parsedSpec.peopleActions.length > 0 && (
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Key Actions</h2>
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Stakeholder</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Action</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Timing</th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">Expected Outcome</th>
-                </tr>
-              </thead>
-              <tbody>
-                {parsedSpec.peopleActions.map((action, i) => (
-                  <tr key={i} className="border-t">
-                    <td className="px-4 py-3 text-sm">{action.stakeholder}</td>
-                    <td className="px-4 py-3 text-sm">{action.action}</td>
-                    <td className="px-4 py-3 text-sm">{action.timing}</td>
-                    <td className="px-4 py-3 text-sm">{action.expectedOutcome}</td>
-                  </tr>
+        {/* Decision Framework */}
+        {parsedSpec.decisionFramework && (
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Marco de Decisión</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
+                <h3 className="font-bold text-lg text-green-900 mb-4">Áreas Flexibles</h3>
+                {parsedSpec.decisionFramework.flexible.map((area, i) => (
+                  <div key={i} className="mb-4 last:mb-0">
+                    <h4 className="font-semibold text-green-800">{area.title}</h4>
+                    <p className="text-sm text-green-700 mt-1">{area.description}</p>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-    </div>
+              </div>
+              <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
+                <h3 className="font-bold text-lg text-red-900 mb-4">No Negociable</h3>
+                {parsedSpec.decisionFramework.nonNegotiable.map((area, i) => (
+                  <div key={i} className="mb-4 last:mb-0">
+                    <h4 className="font-semibold text-red-800">{area.title}</h4>
+                    <p className="text-sm text-red-700 mt-1">{area.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </motion.div>
+    </MainLayout>
   );
 }

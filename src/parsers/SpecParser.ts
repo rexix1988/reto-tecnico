@@ -86,15 +86,16 @@ export class SpecParser {
       const node = tree.children[i];
 
       if (node.type === 'heading' && node.depth === 2) {
-        if (currentPhase) {
-          currentPhase.description = phaseContent.join('\n').trim();
-          phases.push(currentPhase as Phase);
-        }
-
         const text = this.extractText(node);
         const match = text.match(/Fase\s+(\d+):\s*(.+)/i);
         
         if (match) {
+          // Save previous phase if exists
+          if (currentPhase) {
+            currentPhase.description = phaseContent.join('\n').trim();
+            phases.push(currentPhase as Phase);
+          }
+
           const order = parseInt(match[1]);
           currentPhase = {
             id: `phase-${order}`,
@@ -106,6 +107,14 @@ export class SpecParser {
             transitionCriteria: []
           };
           phaseContent = [];
+        } else {
+          // Not a phase heading, reset current phase
+          if (currentPhase) {
+            currentPhase.description = phaseContent.join('\n').trim();
+            phases.push(currentPhase as Phase);
+            currentPhase = null;
+            phaseContent = [];
+          }
         }
       } else if (currentPhase && node.type === 'paragraph') {
         phaseContent.push(this.extractText(node));
@@ -122,7 +131,12 @@ export class SpecParser {
       phases.push(currentPhase as Phase);
     }
 
-    return phases;
+    // Remove duplicates by id
+    const uniquePhases = Array.from(
+      new Map(phases.map(phase => [phase.id, phase])).values()
+    );
+
+    return uniquePhases;
   }
 
   extractCapabilities(tree: Root, phases: Phase[]): Capability[] {

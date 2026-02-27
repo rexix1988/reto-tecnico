@@ -728,3 +728,249 @@ interface PeopleAction {
 *Para cualquier* spec parseado cargado, el StateManager debe almacenarlo correctamente en el estado global y hacerlo accesible para consultas posteriores.
 
 **Valida: Requisito 4.1**
+
+
+## Diseño Visual Moderno
+
+### Sistema de Colores
+
+#### Status Colors
+- Not Started: `#94A3B8` (slate-400)
+- In Progress: `#3B82F6` (blue-500)
+- Completed: `#10B981` (green-500)
+- Blocked: `#EF4444` (red-500)
+- At Risk: `#F59E0B` (amber-500)
+
+#### Priority Colors
+- Critical: `#DC2626` (red-600)
+- High: `#EA580C` (orange-600)
+- Medium: `#CA8A04` (yellow-600)
+- Low: `#65A30D` (lime-600)
+
+#### UI Colors
+- Background: `#F8FAFC` (slate-50)
+- Card: `#FFFFFF` with shadow
+- Border: `#E2E8F0` (slate-200)
+- Text Primary: `#0F172A` (slate-900)
+- Text Secondary: `#64748B` (slate-500)
+
+### Tipografía
+- Headings: `font-bold` with `tracking-tight`
+- Body: `font-normal` with `leading-relaxed`
+- Metrics: `font-semibold` with `tabular-nums`
+- Labels: `text-xs` uppercase with `tracking-wide`
+
+### Espaciado y Layout
+- Container: `max-w-[1920px]` with responsive padding
+- Grid: 12-column system with gap-6
+- Card padding: `p-6` to `p-8`
+- Section spacing: `space-y-8`
+- Border radius: `16px` for cards, `8px` for buttons
+
+### Animaciones
+- Micro-interactions: 150ms (hover, focus)
+- Transitions: 250ms (expand, collapse)
+- Page transitions: 400ms (view changes)
+- Easing: `cubic-bezier(0.4, 0, 0.2, 1)` (ease-in-out)
+
+### Breakpoints Responsivos
+- Mobile: < 640px (single column, collapsed sidebar)
+- Tablet: 640px - 1024px (2 columns, overlay sidebar)
+- Desktop: 1024px - 1536px (3 columns, fixed sidebar)
+- Large: > 1536px (4 columns, wide layout)
+
+## Componentes Adicionales
+
+### Componente: MainLayout
+
+**Propósito**: Layout principal con sidebar fijo, header con KPIs y área de contenido scrollable.
+
+**Interfaz**:
+```typescript
+interface MainLayout {
+  sidebar: ReactElement
+  header: ReactElement
+  children: ReactElement
+  sidebarCollapsed: boolean
+  onToggleSidebar: () => void
+}
+```
+
+**Responsabilidades**:
+- Gestionar layout responsivo
+- Controlar estado de sidebar (collapsed/expanded)
+- Proveer estructura consistente para todas las vistas
+
+### Componente: Sidebar
+
+**Propósito**: Navegación lateral con filtros y acceso rápido a fases.
+
+**Interfaz**:
+```typescript
+interface Sidebar {
+  phases: Phase[]
+  activePhase: string | null
+  filters: FilterState
+  onPhaseSelect: (phaseId: string) => void
+  onFilterChange: (filters: FilterState) => void
+  collapsed: boolean
+}
+```
+
+**Responsabilidades**:
+- Mostrar lista de fases con navegación
+- Proveer controles de filtro
+- Indicar fase activa
+- Adaptarse a estado collapsed/expanded
+
+### Componente: Header
+
+**Propósito**: Header con KPIs principales y acciones rápidas.
+
+**Interfaz**:
+```typescript
+interface Header {
+  totalPhases: number
+  completionPercentage: number
+  activeDependencies: number
+  onRefresh: () => void
+}
+```
+
+**Responsabilidades**:
+- Mostrar métricas clave en tiempo real
+- Proveer acciones rápidas (refresh, export)
+- Mantener información visible durante scroll
+
+### Componente: ProgressChart
+
+**Propósito**: Gráfico donut mostrando progreso por estado.
+
+**Interfaz**:
+```typescript
+interface ProgressChart {
+  data: { status: PhaseStatus; count: number; percentage: number }[]
+  onSegmentClick?: (status: PhaseStatus) => void
+}
+```
+
+**Responsabilidades**:
+- Renderizar donut chart con Recharts
+- Mostrar porcentajes y leyenda
+- Permitir interacción con segmentos
+- Animar entrada y cambios de datos
+
+### Componente: TimelineChart
+
+**Propósito**: Timeline Gantt horizontal con fases y duración.
+
+**Interfaz**:
+```typescript
+interface TimelineChart {
+  phases: Phase[]
+  onPhaseClick: (phaseId: string) => void
+  currentDate: Date
+}
+```
+
+**Responsabilidades**:
+- Renderizar barras horizontales por fase
+- Mostrar duración estimada
+- Indicar fecha actual
+- Permitir click para expandir detalles
+
+### Componente: CapabilityMatrix
+
+**Propósito**: Matriz de capacidades agrupadas por fase y estado.
+
+**Interfaz**:
+```typescript
+interface CapabilityMatrix {
+  capabilities: Capability[]
+  phases: Phase[]
+  onCapabilityClick?: (capabilityId: string) => void
+}
+```
+
+**Responsabilidades**:
+- Renderizar stacked bar chart
+- Agrupar por fase
+- Colorear por estado
+- Mostrar tooltips con detalles
+
+### Componente: PhaseTimeline
+
+**Propósito**: Timeline horizontal interactivo con nodos de fase.
+
+**Interfaz**:
+```typescript
+interface PhaseTimeline {
+  phases: Phase[]
+  activePhase: string | null
+  onPhaseClick: (phaseId: string) => void
+}
+```
+
+**Responsabilidades**:
+- Renderizar nodos redondeados conectados
+- Mostrar indicadores de progreso
+- Aplicar efectos hover y click
+- Scroll suave a fase seleccionada
+
+### Componente: ExpandablePhaseCard
+
+**Propósito**: Tarjeta de fase con expansión inline para detalles.
+
+**Interfaz**:
+```typescript
+interface ExpandablePhaseCard {
+  phase: Phase
+  capabilities: Capability[]
+  dependencies: Dependency[]
+  expanded: boolean
+  onToggle: () => void
+}
+```
+
+**Responsabilidades**:
+- Renderizar tarjeta con bordes redondeados
+- Aplicar gradiente basado en estado
+- Animar expansión/colapso con Framer Motion
+- Mostrar detalles inline cuando expandida
+
+### Componente: FilterPanel
+
+**Propósito**: Panel de filtros con búsqueda y multi-select.
+
+**Interfaz**:
+```typescript
+interface FilterPanel {
+  filters: FilterState
+  onFilterChange: (filters: FilterState) => void
+  onClearFilters: () => void
+  activeFilterCount: number
+}
+```
+
+**Responsabilidades**:
+- Proveer controles de filtro (status, priority, phase)
+- Input de búsqueda con debounce
+- Mostrar contador de filtros activos
+- Botón para limpiar todos los filtros
+
+## Dependencias Adicionales
+
+**Visualización de Datos**:
+- recharts: ^2.10.0 (gráficos interactivos)
+- date-fns: ^3.0.0 (formateo de fechas)
+
+**Animaciones**:
+- framer-motion: ^11.0.0 (animaciones fluidas)
+
+**UI Components**:
+- react-icons: ^5.0.0 (iconos)
+- clsx: ^2.1.0 (clases condicionales)
+- react-hot-toast: ^2.4.1 (notificaciones)
+
+**Utilidades**:
+- use-debounce: ^10.0.0 (debounce para búsqueda)

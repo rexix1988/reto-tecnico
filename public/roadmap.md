@@ -14,7 +14,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 ## Fase 1: Fundamentos y Adopción Inicial
 
 **ID**: phase-1
-**Estado**: not_started
 **Duración estimada**: 3-4 meses
 **Objetivo**: Establecer bases sólidas y generar valor inmediato para aumentar adopción
 
@@ -22,7 +21,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-1.1: Catálogo de Servicios Consolidado
 **Prioridad**: critical
-**Estado**: planned
 **Descripción**: Catálogo unificado y actualizado automáticamente de todos los servicios, APIs y componentes de la organización.
 
 **Entregables**:
@@ -35,7 +33,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-1.2: Templates de Autoservicio Básicos
 **Prioridad**: critical
-**Estado**: planned
 **Descripción**: Templates validados para casos de uso más comunes que permitan a equipos crear recursos sin intervención de plataforma.
 
 **Entregables**:
@@ -51,7 +48,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-1.3: Portal de Documentación Técnica
 **Prioridad**: high
-**Estado**: planned
 **Descripción**: Centralizar documentación técnica, guías de arquitectura y estándares de la organización.
 
 **Entregables**:
@@ -64,7 +60,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-1.4: Integración con Herramientas de Observabilidad
 **Prioridad**: high
-**Estado**: planned
 **Descripción**: Visibilidad de métricas, logs y trazas desde el catálogo de servicios.
 
 **Entregables**:
@@ -95,7 +90,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 ## Fase 2: Estandarización Inteligente y Gobernanza
 
 **ID**: phase-2
-**Estado**: not_started
 **Duración estimada**: 4-5 meses
 **Objetivo**: Implementar "caminos pavimentados" atractivos que faciliten cumplimiento sin imposición
 
@@ -103,7 +97,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-2.1: Golden Paths para Casos de Uso Comunes
 **Prioridad**: critical
-**Estado**: planned
 **Descripción**: Rutas recomendadas y optimizadas para escenarios frecuentes que incluyen mejores prácticas de seguridad, observabilidad y costos.
 
 **Entregables**:
@@ -117,7 +110,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-2.2: Sistema de Políticas como Código
 **Prioridad**: critical
-**Estado**: planned
 **Descripción**: Framework para definir, validar y aplicar políticas de seguridad, cumplimiento y costos de manera programática.
 
 **Entregables**:
@@ -131,7 +123,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-2.3: Cost Management y FinOps Integration
 **Prioridad**: high
-**Estado**: planned
 **Descripción**: Visibilidad y control de costos AWS directamente desde Backstage con recomendaciones de optimización.
 
 **Entregables**:
@@ -145,7 +136,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-2.4: Scorecard de Madurez de Servicios
 **Prioridad**: medium
-**Estado**: planned
 **Descripción**: Sistema de evaluación automática de madurez de servicios basado en mejores prácticas.
 
 **Entregables**:
@@ -176,7 +166,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 ## Fase 3: Inteligencia Organizacional y Autonomía Avanzada
 
 **ID**: phase-3
-**Estado**: not_started
 **Duración estimada**: 5-6 meses
 **Objetivo**: Convertir Backstage en fuente de verdad e inteligencia para decisiones estratégicas
 
@@ -184,7 +173,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-3.1: Analytics y Métricas de Plataforma
 **Prioridad**: critical
-**Estado**: planned
 **Descripción**: Sistema de analytics que proporciona insights sobre uso, adopción, eficiencia y salud de la plataforma.
 
 **Entregables**:
@@ -198,7 +186,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-3.2: AI-Powered Recommendations
 **Prioridad**: high
-**Estado**: planned
 **Descripción**: Sistema de recomendaciones inteligentes basado en ML para optimización, seguridad y mejores prácticas.
 
 **Entregables**:
@@ -213,7 +200,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-3.3: Self-Service Advanced Workflows
 **Prioridad**: high
-**Estado**: planned
 **Descripción**: Workflows complejos de autoservicio para escenarios avanzados (migraciones, disaster recovery, multi-región).
 
 **Entregables**:
@@ -227,7 +213,6 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 #### CAP-3.4: Developer Experience Feedback Loop
 **Prioridad**: medium
-**Estado**: planned
 **Descripción**: Sistema continuo de captura y análisis de feedback de desarrolladores para mejora continua.
 
 **Entregables**:
