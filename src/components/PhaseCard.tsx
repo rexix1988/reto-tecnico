@@ -132,6 +132,20 @@ export function PhaseCard({ phase, onClick, expanded: externalExpanded }: PhaseC
                     </ul>
                   </div>
                 )}
+
+                {phase.externalDependencies && phase.externalDependencies.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-sm text-slate-700 mb-2">Dependencias Externas</h4>
+                    <ul className="space-y-1">
+                      {phase.externalDependencies.map((dep, i) => (
+                        <li key={i} className="text-sm text-slate-600 flex items-start">
+                          <span className="text-amber-500 mr-2">⚠</span>
+                          {dep}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}

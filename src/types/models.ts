@@ -47,6 +47,7 @@ export interface Phase {
   status: PhaseStatus;
   estimatedDuration: string;
   transitionCriteria: string[];
+  externalDependencies: string[];
   architectureNotes?: string;
 }
 

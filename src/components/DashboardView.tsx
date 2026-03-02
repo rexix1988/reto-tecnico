@@ -3,7 +3,6 @@ import { useRef, useEffect } from 'react';
 import { useStore } from '../state/store';
 import { MainLayout } from './layout/MainLayout';
 import { PhaseCard } from './PhaseCard';
-import { ProgressChart } from './dashboard/ProgressChart';
 import { TimelineChart } from './dashboard/TimelineChart';
 import { MetricCard } from './MetricCard';
 
@@ -45,9 +44,8 @@ export function DashboardView() {
         transition={{ duration: 0.4 }}
         className="space-y-8"
       >
-        {/* Charts Section */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ProgressChart phases={parsedSpec.phases} />
+        {/* Timeline Chart */}
+        <section>
           <TimelineChart phases={parsedSpec.phases} />
         </section>
 

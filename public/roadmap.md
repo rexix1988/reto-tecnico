@@ -14,7 +14,7 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 ## Fase 1: Fundamentos y Adopción Inicial
 
 **ID**: phase-1
-**Duración estimada**: 3-4 meses
+**Duración estimada**: 8-9 meses
 **Objetivo**: Establecer bases sólidas y generar valor inmediato para aumentar adopción
 
 ### Capacidades a Entregar
@@ -24,212 +24,267 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 **Descripción**: Catálogo unificado y actualizado automáticamente de todos los servicios, APIs y componentes de la organización.
 
 **Entregables**:
-- Integración automática con repositorios GitHub/GitLab
-- Sincronización con AWS Service Catalog
-- Metadata enriquecida (ownership, SLAs, dependencias)
+- Integración con repositorios ADO/GitHub
+- Integración con CMDB
+- Enriquecimiento de metadatos (ownership, SLAs, Negocio)
 - Búsqueda y filtrado avanzado
 
-**Esfuerzo estimado**: 6 semanas
+**Esfuerzo estimado**: 12 semanas
 
-#### CAP-1.2: Templates de Autoservicio Básicos
+#### CAP-1.2: Scaffolds de Autoservicio Básicos
 **Prioridad**: critical
-**Descripción**: Templates validados para casos de uso más comunes que permitan a equipos crear recursos sin intervención de plataforma.
+**Descripción**: Scaffolds para casos de uso más comunes que permitan a los equipos inicializar proyectos y recursos de forma autónoma.
 
 **Entregables**:
-- Template: Servicio REST API (Node.js/Python)
-- Template: Función Lambda con CI/CD
-- Template: Base de datos RDS con backups
-- Template: Bucket S3 con políticas estándar
+- Scaffold: Stack tecnológico principal: Java / Elixir / Angular
+- Scaffold: Función Lambda 
+- Scaffold: Flutter / NextJS
+- Scaffold: Operaciones DevOps
 - Documentación de uso y mejores prácticas
 
 **Esfuerzo estimado**: 8 semanas
 **Dependencias**: CAP-1.1
 
 
-#### CAP-1.3: Portal de Documentación Técnica
-**Prioridad**: high
-**Descripción**: Centralizar documentación técnica, guías de arquitectura y estándares de la organización.
+#### CAP-1.3: Operaciones con propósito
+**Prioridad**: medium
+**Descripción**: Habilitar capacidades de operación y gestión del ciclo de vida de las aplicaciones.
 
 **Entregables**:
-- Integración con TechDocs de Backstage
-- Migración de documentación crítica existente
-- Sistema de búsqueda unificado
-- Versionado de documentación
+- Habilitar fundacionales para entregar experiencias auto-servicio de las operaciones.
+- Habilitar las operaciones mas importantes para la gestión de la aplicación.
+- Integrar herramientas de visibilidad del estado de Excelencia Operativa.
+- Estrategia innersource para la colaboración de los equipos transversales operativos.
 
-**Esfuerzo estimado**: 4 semanas
+**Esfuerzo estimado**: 10 semanas
 
 #### CAP-1.4: Integración con Herramientas de Observabilidad
 **Prioridad**: high
 **Descripción**: Visibilidad de métricas, logs y trazas desde el catálogo de servicios.
 
 **Entregables**:
-- Integración con Datadog/New Relic/Prometheus
-- Dashboards embebidos por servicio
-- Alertas y estado de salud en tiempo real
-- Enlaces rápidos a herramientas de debugging
+- Integración con Dynatrace/Vision
+- Acceso y visibilidad de Dashboards
+- Visibilidad de las métricas clave
+- Habilitar observabilidad a 1 click
+
+**Esfuerzo estimado**: 5 semanas
+**Dependencias**: CAP-1.1
+
+#### CAP-1.5: Estrategia de orquestación de plataformas
+**Prioridad**: high
+**Descripción**: Establecer las bases arquitectónicas para habilitar un orquestador de plataformas
+
+**Entregables**:
+- Caracteristicas clave para el orquestador de plataformas
+- Conjunto de herramientas seleccionadas
+- PoCs de viabilidad y funcionalidad
+- Roadmap del orquestador de plataformas
 
 **Esfuerzo estimado**: 5 semanas
 **Dependencias**: CAP-1.1
 
 ### Criterios de Transición a Fase 2
 
-- ✓ 60% de equipos usando el catálogo activamente (medido por MAU)
-- ✓ Al menos 5 templates validados y usados en producción
-- ✓ Tiempo promedio de creación de nuevo servicio reducido en 40%
-- ✓ NPS de desarrolladores > 30
-- ✓ Documentación técnica centralizada con >80% de cobertura
+- 50% de equipos usando el catálogo activamente
+- Al menos 5 Scaffolds validados y usados en producción
+- Tiempo promedio de creación de nuevo servicio reducido en 40%
 
 ### Dependencias Externas
 
-- Acceso a APIs de GitHub/GitLab
-- Permisos de lectura en cuentas AWS
+- Acceso a APIs de ADO/GitHub
 - Integración con herramientas de observabilidad existentes
+- Modernización de CI/CD
 
 ---
 
 ## Fase 2: Estandarización Inteligente y Gobernanza
 
 **ID**: phase-2
-**Duración estimada**: 4-5 meses
-**Objetivo**: Implementar "caminos pavimentados" atractivos que faciliten cumplimiento sin imposición
+**Duración estimada**: 6-7 meses
+**Objetivo**: Implementar "caminos pavimentados" atractivos que faciliten el ciclo de vida y la experiencia del desarrollador
 
 ### Capacidades a Entregar
 
-#### CAP-2.1: Golden Paths para Casos de Uso Comunes
+#### CAP-2.1: Orquestador de plataformas
 **Prioridad**: critical
-**Descripción**: Rutas recomendadas y optimizadas para escenarios frecuentes que incluyen mejores prácticas de seguridad, observabilidad y costos.
+**Descripción**: Orquestador de plataformas que permita habilitar las nuevas experiencias de rutas pavimentadas
 
 **Entregables**:
-- 10+ golden paths documentados y automatizados
+- Decision Engine and Workflow Engine
+- Workload Spec Code
+- CI/CD con GitOps powered by Argo
+- Gestión unificada del despliegue de la aplicación e infraestructura
+
+**Esfuerzo estimado**: 24 semanas
+
+#### CAP-2.2: Abstracción de Adaptadores
+**Prioridad**: critical
+**Descripción**: Modelos de abstracción para adaptadores comunes que facilite la gestión del ciclo de vida y vulnerabilidades
+
+**Entregables**:
+- Implementación de DAPR como runtime de abstracción
+- Building blocks para adaptadores comunes (state, pub/sub, bindings, secrets)
+- Catálogo de adaptadores pre-configurados y versionados
+- Gestión centralizada de actualizaciones y parches de seguridad
+- Ajustar golden paths para uso de adaptadores
+- Métricas de uso y vulnerabilidades por adaptador
+
+**Esfuerzo estimado**: 16 semanas
+**Dependencias**: CAP-2.1
+
+
+#### CAP-2.3: Golden Paths para Casos de Uso Comunes
+**Prioridad**: critical
+**Descripción**: Rutas recomendadas y optimizadas para escenarios frecuentes que incluyen mejores prácticas
+
+**Entregables**:
+- 5 golden paths documentados y automatizados
 - Wizard interactivo para selección de path adecuado
 - Validación automática de cumplimiento de estándares
 - Métricas de adopción por golden path
 
-**Esfuerzo estimado**: 10 semanas
-**Dependencias**: phase-1
+**Esfuerzo estimado**: 12 semanas
+**Dependencias**: CAP-2.1
 
-#### CAP-2.2: Sistema de Políticas como Código
-**Prioridad**: critical
-**Descripción**: Framework para definir, validar y aplicar políticas de seguridad, cumplimiento y costos de manera programática.
+#### CAP-2.4: Catalogo de servicios para el negocio
+**Prioridad**: medium
+**Descripción**: Enriquecer el catálogo que sirva como principal fuente para conectar tecnología con negocio
 
 **Entregables**:
-- Motor de políticas basado en OPA (Open Policy Agent)
-- Políticas predefinidas para seguridad y cumplimiento
-- Dashboard de cumplimiento por equipo/servicio
-- Proceso de excepción automatizado con aprobaciones
+- Completa la propuesta del catálogo: Experiencia, API, Eventos, Agentes, MCP
+- Catálogo centralizado de servicios con metadata de negocio
+- Clasificación de servicios por dominio y sistema
+- Facilitar el descubrimiento y reuso
+- Métricas de adopción y uso por área de negocio
 
 **Esfuerzo estimado**: 12 semanas
-
-
-#### CAP-2.3: Cost Management y FinOps Integration
-**Prioridad**: high
-**Descripción**: Visibilidad y control de costos AWS directamente desde Backstage con recomendaciones de optimización.
-
-**Entregables**:
-- Dashboard de costos por servicio/equipo
-- Alertas de presupuesto y anomalías
-- Recomendaciones de optimización automatizadas
-- Reportes ejecutivos de FinOps
-
-**Esfuerzo estimado**: 8 semanas
-**Dependencias**: CAP-1.1
-
-#### CAP-2.4: Scorecard de Madurez de Servicios
-**Prioridad**: medium
-**Descripción**: Sistema de evaluación automática de madurez de servicios basado en mejores prácticas.
-
-**Entregables**:
-- Framework de scoring configurable
-- Evaluación automática de servicios
-- Visualización de gaps y recomendaciones
-- Gamificación para incentivar mejoras
-
-**Esfuerzo estimado**: 6 semanas
 **Dependencias**: CAP-1.1, CAP-2.2
 
 ### Criterios de Transición a Fase 3
 
-- ✓ 75% de nuevos servicios usan golden paths
-- ✓ 90% de cumplimiento de políticas críticas
-- ✓ Reducción de 30% en costos por optimizaciones sugeridas
-- ✓ Tiempo de aprobación de excepciones < 24 horas
-- ✓ Score promedio de madurez de servicios > 70/100
+- 50% de nuevos servicios usan golden paths
+- 80% de servicios registrados en el catálogo con metadata completa
+- 20% de mejora al Time to Market con el orquestador
+- Tiempo promedio de onboarding de nuevos servicios < 5 días
 
 ### Dependencias Externas
 
-- Integración con AWS Cost Explorer
-- Acceso a herramientas de FinOps
-- Colaboración con equipos de seguridad y compliance
+- Infraestructura de Kubernetes y Argo CD
+- Colaboración con equipos de arquitectura empresarial, DevOps y seguridad.
+- Acceso a CMDB
+- Integración con herramientas de documentación del negocio
 
 ---
 
 ## Fase 3: Inteligencia Organizacional y Autonomía Avanzada
 
 **ID**: phase-3
-**Duración estimada**: 5-6 meses
-**Objetivo**: Convertir Backstage en fuente de verdad e inteligencia para decisiones estratégicas
+**Duración estimada**: 12-14 meses
+**Objetivo**: Convertir la plataforma en un sistema inteligente y autónomo que optimice continuamente la entrega de valor
 
 ### Capacidades a Entregar
 
-#### CAP-3.1: Analytics y Métricas de Plataforma
+#### CAP-3.1: Platform Maturity Model y Métricas
 **Prioridad**: critical
-**Descripción**: Sistema de analytics que proporciona insights sobre uso, adopción, eficiencia y salud de la plataforma.
+**Descripción**: Sistema de medición continua de madurez de plataforma basado en DORA metrics y Platform Engineering KPIs
 
 **Entregables**:
-- Data warehouse de métricas de plataforma
-- Dashboards ejecutivos y operacionales
-- Análisis de tendencias y predicciones
-- APIs de métricas para integración externa
+- Dashboard de Platform Maturity Model con scoring por dominio
+- Métricas de adopción de golden paths por equipo
+- Benchmarking interno entre dominios
+- APIs de métricas para integración con herramientas de BI
 
 **Esfuerzo estimado**: 10 semanas
 **Dependencias**: phase-2
 
-#### CAP-3.2: AI-Powered Recommendations
-**Prioridad**: high
-**Descripción**: Sistema de recomendaciones inteligentes basado en ML para optimización, seguridad y mejores prácticas.
+#### CAP-3.2: Auto-Remediation y Operational Excellence
+**Prioridad**: critical
+**Descripción**: Capacidades de auto-remediación inteligente y optimización continua de operaciones
 
 **Entregables**:
-- Motor de recomendaciones basado en patrones históricos
+- Motor de auto-remediation para incidentes comunes
+- Motor de recomendaciones y soluciones basado en patrones históricos
 - Sugerencias proactivas de optimización
 - Detección de anomalías y riesgos
 - Asistente conversacional para desarrolladores
+- Gestión automática de ambientes efímeros con TTL
+- Optimización automática de recursos (rightsizing, scaling)
 
 **Esfuerzo estimado**: 14 semanas
-**Dependencias**: CAP-3.1
+**Dependencias**: CAP-2.1, CAP-3.1
 
-
-#### CAP-3.3: Self-Service Advanced Workflows
+#### CAP-3.3: Domain-Driven Platform Engineering
 **Prioridad**: high
-**Descripción**: Workflows complejos de autoservicio para escenarios avanzados (migraciones, disaster recovery, multi-región).
+**Descripción**: Estructura de plataforma organizada por dominios de negocio con autonomía y gobernanza descentralizada
 
 **Entregables**:
-- Workflow engine integrado
-- Templates de workflows para casos avanzados
-- Orquestación de múltiples recursos y servicios
-- Rollback automático en caso de fallo
+- Modelo de dominios y subdominios de plataforma
+- Platform teams por dominio con ownership claro
+- Catálogo de capacidades por dominio
+- Contratos de API entre dominios (API-first)
 
 **Esfuerzo estimado**: 12 semanas
-**Dependencias**: phase-2
+**Dependencias**: CAP-2.3
 
-#### CAP-3.4: Developer Experience Feedback Loop
-**Prioridad**: medium
-**Descripción**: Sistema continuo de captura y análisis de feedback de desarrolladores para mejora continua.
+#### CAP-3.4: InnerSource y Colaboración Avanzada
+**Prioridad**: high
+**Descripción**: Ecosistema de colaboración InnerSource para compartir componentes, golden paths y mejores prácticas
 
 **Entregables**:
-- Encuestas contextuales en Backstage
-- Análisis de sentimiento y NPS automatizado
-- Priorización de mejoras basada en impacto
-- Comunicación de roadmap y cambios
+- Modelo InnerSource para contribuciones de comunidad interna
+- Marketplace de componentes reutilizables
+- Sistema de contribución y review de golden paths
+- Gamificación y reconocimiento de contribuidores
 
-**Esfuerzo estimado**: 6 semanas
+**Esfuerzo estimado**: 10 semanas
+**Dependencias**: CAP-2.2, CAP-3.3
 
-### Criterios de Éxito de Fase 3
+#### CAP-3.5: Optimización de Time-to-Production
+**Prioridad**: high
+**Descripción**: Capacidades avanzadas para minimizar tiempos de despliegue y maximizar velocidad de entrega
 
-- ✓ 90% de equipos consideran Backstage crítico para su trabajo
-- ✓ Reducción de 50% en tiempo de onboarding de nuevos desarrolladores
-- ✓ 80% de recomendaciones de AI adoptadas
-- ✓ NPS de desarrolladores > 60
-- ✓ Tiempo de resolución de incidentes reducido en 40%
+**Entregables**:
+- Ambientes efímeros on-demand con aprovisionamiento < 2 hours
+- Preview environments automáticos por PR
+- Progressive delivery con canary y blue-green automatizado
+- Feature flags integrados en golden paths
+
+**Esfuerzo estimado**: 12 semanas
+**Dependencias**: CAP-2.1, CAP-3.2
+
+#### CAP-3.6: AI-Powered Platform Intelligence
+**Prioridad**: medium
+**Descripción**: Inteligencia artificial para recomendaciones proactivas y optimización continua
+
+**Entregables**:
+- Recomendaciones de arquitectura basadas en patrones históricos
+- Detección de anomalías y predicción de incidentes
+- Análisis de costos con sugerencias de optimización
+- Identificación automática de tech debt
+
+**Esfuerzo estimado**: 14 semanas
+**Dependencias**: CAP-3.1, CAP-3.2
+
+### Criterios de Transición a Madurez Completa
+
+- 85% de equipos en nivel 3+ del Platform Maturity Model
+- Deployment frequency > 10 deploys/día por dominio
+- Lead time for changes < 1 hora
+- Change failure rate < 10%
+- 70% de nuevos servicios usando golden paths
+- Tiempo de aprovisionamiento de ambientes < 1 hora
+- 50% de incidentes auto-remediados sin intervención humana
+- Al menos 30 contribuciones InnerSource activas
+- NPS de desarrolladores > 70
+
+### Dependencias Externas
+
+- Integración con herramientas de FinOps y cost management
+- Acceso a sistemas de ML/AI para analytics avanzados
+- Colaboración con equipos de SRE y arquitectura empresarial
+- Integración con plataformas de feature flags
+- Acceso a herramientas de progressive delivery
 
 ---
 
@@ -258,7 +313,7 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 - Health checks y readiness probes configurados
 - Alertas para errores críticos
 
-**Enforcement**: Templates incluyen observabilidad por defecto, scorecards penalizan ausencia
+**Enforcement**: Scaffolds incluyen observabilidad por defecto, scorecards penalizan ausencia
 
 #### 3. Ownership y Responsabilidad
 **Rationale**: Equipos autónomos requieren ownership claro para escalar efectivamente.
@@ -319,7 +374,7 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 **Nivel 1 - Equipo de Plataforma**:
 - Dudas sobre interpretación de políticas
-- Solicitudes de nuevos templates o golden paths
+- Solicitudes de nuevos Scaffolds o golden paths
 - Problemas técnicos con Backstage
 
 **Nivel 2 - Comité de Arquitectura**:
@@ -336,7 +391,7 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 
 **Líder de Plataforma**:
 - Roadmap y priorización de capacidades de plataforma
-- Definición de golden paths y templates
+- Definición de golden paths y Scaffolds
 - Aprobación de excepciones de bajo riesgo
 
 **Equipo de Seguridad**:
@@ -367,8 +422,8 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 **Método de medición**: MAU (Monthly Active Users) / Total de equipos
 **Frecuencia**: Mensual
 
-#### IND-2: Uso de Templates y Golden Paths
-**Descripción**: Porcentaje de nuevos servicios creados usando templates oficiales
+#### IND-2: Uso de Scaffolds y Golden Paths
+**Descripción**: Porcentaje de nuevos servicios creados usando Scaffolds oficiales
 **Target**: 80% al final de Fase 2
 **Current**: 15%
 **Método de medición**: Servicios creados vía Backstage / Total servicios nuevos
@@ -610,7 +665,7 @@ Este roadmap presenta la evolución estratégica de Backstage como eje central d
 - Service mesh (Istio) para comunicación segura
 
 **Integraciones**:
-- GitHub/GitLab para SCM
+- ADO/GitHub para SCM
 - AWS APIs para provisioning
 - Datadog/New Relic para observabilidad
 - PagerDuty para incident management

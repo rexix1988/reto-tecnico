@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
+import { useEffect } from 'react';
 import { Capability } from '../../types/models';
 import { Badge } from '../shared/Badge';
 
@@ -9,6 +10,14 @@ interface CapabilityModalProps {
 }
 
 export function CapabilityModal({ capability, onClose }: CapabilityModalProps) {
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
   if (!capability) return null;
 
   return (

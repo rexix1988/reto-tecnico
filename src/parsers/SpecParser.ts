@@ -81,6 +81,8 @@ export class SpecParser {
     const phases: Phase[] = [];
     let currentPhase: Partial<Phase> | null = null;
     let phaseContent: string[] = [];
+    let inTransitionCriteria = false;
+    let inExternalDeps = false;
 
     for (let i = 0; i < tree.children.length; i++) {
       const node = tree.children[i];
@@ -104,9 +106,12 @@ export class SpecParser {
             order,
             status: PhaseStatus.NOT_STARTED,
             estimatedDuration: '',
-            transitionCriteria: []
+            transitionCriteria: [],
+            externalDependencies: []
           };
           phaseContent = [];
+          inTransitionCriteria = false;
+          inExternalDeps = false;
         } else {
           // Not a phase heading, reset current phase
           if (currentPhase) {
@@ -115,13 +120,29 @@ export class SpecParser {
             currentPhase = null;
             phaseContent = [];
           }
+          inTransitionCriteria = false;
+          inExternalDeps = false;
         }
+      } else if (currentPhase && node.type === 'heading' && node.depth === 3) {
+        const text = this.extractText(node);
+        inTransitionCriteria = text.match(/Criterios de Transición/i) !== null;
+        inExternalDeps = text.match(/Dependencias Externas/i) !== null;
       } else if (currentPhase && node.type === 'paragraph') {
-        phaseContent.push(this.extractText(node));
+        const text = this.extractText(node);
+        
+        // Extract duration
+        const durationMatch = text.match(/Duración estimada[:\s]+(.+)/i);
+        if (durationMatch) {
+          currentPhase.estimatedDuration = durationMatch[1].trim();
+        } else if (!inTransitionCriteria && !inExternalDeps) {
+          phaseContent.push(text);
+        }
       } else if (currentPhase && node.type === 'list') {
-        const criteria = this.extractListItems(node);
-        if (criteria.length > 0) {
-          currentPhase.transitionCriteria = criteria;
+        const items = this.extractListItems(node);
+        if (inTransitionCriteria) {
+          currentPhase.transitionCriteria = items;
+        } else if (inExternalDeps) {
+          currentPhase.externalDependencies = items;
         }
       }
     }
